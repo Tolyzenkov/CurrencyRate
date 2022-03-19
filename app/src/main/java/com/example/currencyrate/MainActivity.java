@@ -3,22 +3,19 @@ package com.example.currencyrate;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private ValuteAdapter adapter;
     private ArrayList<Valute> arrayList;
     private RequestQueue requestQueue;
+    String[] charCode;
+DecimalFormat decimalFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +36,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         arrayList = new ArrayList<>();
+        charCode = new String[]{"AUD", "AZN", "GBP", "AMD", "BYN", "BGN", "BRL", "HUF", "HKD", "DKK", "USD",
+                "EUR", "INR", "KZT", "CAD", "KGS", "CNY", "MDL", "NOK", "PLN", "RON", "XDR", "SGD", "TJS",
+                "TRY", "TMT", "UZS", "UAH", "CZK", "SEK", "CHF", "ZAR", "KRW", "JPY"};
+        decimalFormat = new DecimalFormat("#.####");
         requestQueue = Volley.newRequestQueue(this);
-
 
         getRates();
     }
@@ -51,25 +53,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.e("Infotag", "2 этап пройден!");
-                    JSONObject jsonObject = response.getJSONObject("AUD");
-                    Log.e("Infotag", "3 этап пройден!");
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-
+                    for (int i = 0; i < charCode.length; i++) {
+                        JSONObject jsonObject = response.getJSONObject("Valute").getJSONObject(charCode[i]);
                         String countryId = jsonObject.getString("CharCode");
                         Double currentRate = Double.parseDouble(jsonObject.getString("Value"));
                         Double previousRate = Double.parseDouble(jsonObject.getString("Previous"));
 
-                        Log.e("Infotag", countryId);
                         Valute valute = new Valute();
                         valute.setCountryId(countryId);
                         valute.setCurrentRate(currentRate);
                         valute.setPreviousRate(previousRate);
+                        valute.setDifference(currentRate, previousRate);
+                        int imageID = MainActivity.this.getResources().getIdentifier(countryId.toLowerCase(Locale.ROOT), "drawable", getPackageName());
+                        valute.setCountryFlag(imageID);
 
                         arrayList.add(valute);
-
-//                    }
+                    }
 
                     adapter = new ValuteAdapter(MainActivity.this, arrayList);
                     recyclerView.setAdapter(adapter);

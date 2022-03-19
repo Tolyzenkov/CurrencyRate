@@ -1,5 +1,10 @@
 package com.example.currencyrate;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Valute {
 
     private int countryFlag;
@@ -59,7 +64,7 @@ public class Valute {
         this.previousRate = previousRate;
     }
 
-    public void setDifference() {
+    public void setDifference(Double currentRate, Double previousRate) {
         this.difference = currentRate - previousRate;
     }
 }

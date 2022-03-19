@@ -1,5 +1,6 @@
 package com.example.currencyrate;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ValuteAdapter extends RecyclerView.Adapter<ValuteAdapter.RecyclerViewViewHolder> {
@@ -35,7 +37,6 @@ public class ValuteAdapter extends RecyclerView.Adapter<ValuteAdapter.RecyclerVi
 
     public ValuteAdapter(MainActivity mainActivity, ArrayList<Valute> arrayList) {
         this.arrayList = arrayList;
-
     }
 
     @NonNull
@@ -49,18 +50,24 @@ public class ValuteAdapter extends RecyclerView.Adapter<ValuteAdapter.RecyclerVi
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewViewHolder holder, int position) {
         Valute recyclerViewItem = arrayList.get(position);
+        DecimalFormat decimalFormat = new DecimalFormat("#.####");
 
-        holder.countryFlag.setImageResource(recyclerViewItem.getCountryFlag());
-        holder.arrow.setImageResource(recyclerViewItem.getArrow());
+        if (recyclerViewItem.getCountryId().equals("TRY")) {
+            holder.countryFlag.setImageResource(R.drawable.t_ry);
+        } else {
+            holder.countryFlag.setImageResource(recyclerViewItem.getCountryFlag());
+        }
         holder.countryId.setText(recyclerViewItem.getCountryId());
-        holder.rate.setText(Double.toString(recyclerViewItem.getCurrentRate()));
-        holder.difference.setText(Double.toString(recyclerViewItem.getDifference()));
+        holder.rate.setText(decimalFormat.format(recyclerViewItem.getCurrentRate()));
+        holder.difference.setText(decimalFormat.format(recyclerViewItem.getDifference()));
+        if (recyclerViewItem.getDifference() > 0) {
+            holder.arrow.setImageResource(R.drawable.up_arrow);
+            holder.difference.setTextColor(Color.parseColor("#3FDB23"));
+        }
     }
 
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
-
-
 }
