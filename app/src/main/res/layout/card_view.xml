@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/countryFlag"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/countryId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/countryFlag"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="103.9524"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:id="@+id/difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-0.8488"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#db2323"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/rate"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/rate"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/difference"
+            app:srcCompat="@drawable/down_arrow" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
