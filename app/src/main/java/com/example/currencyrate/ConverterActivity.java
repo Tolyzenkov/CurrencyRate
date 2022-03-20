@@ -26,7 +26,6 @@ public class ConverterActivity extends AppCompatActivity {
     TextView firstConvertedValue;
     TextView secondConvertedValue;
     DecimalFormat decimalFormat;
-    Converter converter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +61,7 @@ public class ConverterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String convertedValue;
-//                converter = new Converter(Double.parseDouble(firstCountry.getText().toString()), rate);
                 if (charSequence.length() != 0) {
-//                    convertedValue = converter.convertValuteToRuble();
                     convertedValue = convertRubleToValute(String.valueOf(rate), firstCountry.getText().toString());
                 secondConvertedValue.setText(decimalFormat.format(Double.parseDouble(convertedValue)));
                 } else {
@@ -87,9 +84,7 @@ public class ConverterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String convertedValue;
-//                converter = new Converter(Double.parseDouble(secondCountry.getText().toString()), rate);
                 if (charSequence.length() != 0) {
-//                    convertedValue = converter.convertRubleToValute();
                     convertedValue = convertValuteToRuble(String.valueOf(rate), secondCountry.getText().toString());
                     firstConvertedValue.setText(decimalFormat.format(Double.parseDouble(convertedValue)));
                 } else {
