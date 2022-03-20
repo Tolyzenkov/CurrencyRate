@@ -1,7 +1,6 @@
 package com.example.currencyrate;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -100,8 +99,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestQueue.add(request);
-    }
-
-    public void getRate(String valute) {
     }
 }

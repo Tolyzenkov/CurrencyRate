@@ -23,8 +23,10 @@ public class ConverterActivity extends AppCompatActivity {
     TextView secondCountryID;
     String countryID;
     String stringRate;
-    Converter converter;
+    TextView firstConvertedValue;
+    TextView secondConvertedValue;
     DecimalFormat decimalFormat;
+    Converter converter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class ConverterActivity extends AppCompatActivity {
         firstCountryID = findViewById(R.id.firstCountryId);
         secondCountryID = findViewById(R.id.secondCountryId);
         countryID = intent.getStringExtra("countryID");
+        firstConvertedValue = findViewById(R.id.firstConvertedValue);
+        secondConvertedValue = findViewById(R.id.secondConvertedValue);
         stringRate = intent.getStringExtra("rate").replace(",", ".");
         double rate = Double.parseDouble(stringRate);
         int imageID = ConverterActivity.this.getResources().getIdentifier(countryID.toLowerCase(Locale.ROOT), "drawable", getPackageName());
@@ -57,10 +61,14 @@ public class ConverterActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String convertedValue;
+//                converter = new Converter(Double.parseDouble(firstCountry.getText().toString()), rate);
                 if (charSequence.length() != 0) {
-//                    secondCountry.setText(convert(String.valueOf(rate), firstCountry.getText().toString()), TextView.BufferType.EDITABLE);
+//                    convertedValue = converter.convertValuteToRuble();
+                    convertedValue = convertRubleToValute(String.valueOf(rate), firstCountry.getText().toString());
+                secondConvertedValue.setText(decimalFormat.format(Double.parseDouble(convertedValue)));
                 } else {
-                    secondCountry.setText("");
+                    secondConvertedValue.setText("");
                 }
             }
 
@@ -79,10 +87,14 @@ public class ConverterActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String convertedValue;
+//                converter = new Converter(Double.parseDouble(secondCountry.getText().toString()), rate);
                 if (charSequence.length() != 0) {
-                convertedValue = convert(String.valueOf(rate), secondCountry.getText().toString());
-                firstCountry.setText(decimalFormat.format(Double.parseDouble(convertedValue)));
-            }
+//                    convertedValue = converter.convertRubleToValute();
+                    convertedValue = convertValuteToRuble(String.valueOf(rate), secondCountry.getText().toString());
+                    firstConvertedValue.setText(decimalFormat.format(Double.parseDouble(convertedValue)));
+                } else {
+                    firstConvertedValue.setText("");
+                }
         }
 
             @Override
@@ -92,7 +104,11 @@ public class ConverterActivity extends AppCompatActivity {
         });
     }
 
-    public String convert(String course, String count) {
+    public String convertValuteToRuble(String course, String count) {
         return String.valueOf(Double.parseDouble(count) * Double.parseDouble(course));
+    }
+
+    public String convertRubleToValute(String course, String count) {
+        return String.valueOf(Double.parseDouble(count) / Double.parseDouble(course));
     }
 }

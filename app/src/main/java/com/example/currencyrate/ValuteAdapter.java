@@ -53,7 +53,6 @@ public class ValuteAdapter extends RecyclerView.Adapter<ValuteAdapter.RecyclerVi
                     intent.putExtra("countryID", id);
                     intent.putExtra("rate", rate);
                     view.getContext().startActivity(intent);
-//                    Log.i("myTag", toString(flag);
                 }
             });
         }

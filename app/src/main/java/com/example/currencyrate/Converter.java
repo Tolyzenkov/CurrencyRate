@@ -9,8 +9,12 @@ public class Converter {
         this.rate = rate;
     }
 
-    public double convert() {
-        return count * rate;
+    public String convertValuteToRuble() {
+        return String.valueOf(count * rate);
+    }
+
+    public String convertRubleToValute() {
+        return String.valueOf(rate / count);
     }
 
 

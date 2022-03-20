@@ -22,27 +22,40 @@
         android:id="@+id/firstCountryEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/firstCountryId"
+        android:minWidth="50dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/firstConvertedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/firstCountryId"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
-        android:minWidth="80dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/secondCountryEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/secondCountryId"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
-        android:minWidth="80dp" />
+        android:layout_toLeftOf="@+id/secondCountryId"
+        android:minWidth="50dp"
+        android:textAlignment="center" />
 
 
     <TextView
         android:id="@+id/secondCountryId"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_toLeftOf="@+id/secondCountryFlag"
         android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/secondCountryFlag"
         android:gravity="center_vertical|center_horizontal"
         android:text="USD" />
 
@@ -51,5 +64,17 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/secondConvertedValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondCountryId"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
 </RelativeLayout>
