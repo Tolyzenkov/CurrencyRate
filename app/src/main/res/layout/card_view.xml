@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardView"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     android:layout_margin="10dp">
 
     <RelativeLayout
+        android:id="@+id/innerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,19 +18,19 @@
             android:id="@+id/countryFlag"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="4dp"/>
+            android:padding="4dp" />
 
         <TextView
             android:id="@+id/countryId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="USD"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_toRightOf="@+id/countryFlag"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"/>
+            android:layout_toRightOf="@+id/countryFlag"
+            android:text="USD"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/rate"

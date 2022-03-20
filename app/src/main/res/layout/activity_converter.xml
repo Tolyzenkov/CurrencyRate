@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp">
+
+    <ImageView
+        android:id="@+id/firstCountryFlag"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/firstCountryId"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/firstCountryFlag"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="USD" />
+
+    <EditText
+        android:id="@+id/firstCountryEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstCountryId"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:minWidth="80dp" />
+
+    <EditText
+        android:id="@+id/secondCountryEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/secondCountryId"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:minWidth="80dp" />
+
+
+    <TextView
+        android:id="@+id/secondCountryId"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_toLeftOf="@+id/secondCountryFlag"
+        android:layout_marginRight="10dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="USD" />
+
+    <ImageView
+        android:id="@+id/secondCountryFlag"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

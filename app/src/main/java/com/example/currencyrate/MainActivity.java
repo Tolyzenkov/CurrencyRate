@@ -1,10 +1,14 @@
 package com.example.currencyrate;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,12 +23,14 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private ValuteAdapter adapter;
     private ArrayList<Valute> arrayList;
     private RequestQueue requestQueue;
-    String[] charCode;
-DecimalFormat decimalFormat;
+    private String[] charCode;
+    private DecimalFormat decimalFormat;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ DecimalFormat decimalFormat;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,13 +47,22 @@ DecimalFormat decimalFormat;
                 "EUR", "INR", "KZT", "CAD", "KGS", "CNY", "MDL", "NOK", "PLN", "RON", "XDR", "SGD", "TJS",
                 "TRY", "TMT", "UZS", "UAH", "CZK", "SEK", "CHF", "ZAR", "KRW", "JPY"};
         decimalFormat = new DecimalFormat("#.####");
+        context = this;
         requestQueue = Volley.newRequestQueue(this);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getRates();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+        });
 
         getRates();
     }
 
     private void getRates() {
-        Log.e("Infotag", "1 этап пройден!");
         String url = "https://www.cbr-xml-daily.ru/daily_json.js";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -84,5 +100,8 @@ DecimalFormat decimalFormat;
         });
 
         requestQueue.add(request);
+    }
+
+    public void getRate(String valute) {
     }
 }
